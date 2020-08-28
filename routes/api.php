@@ -18,4 +18,11 @@ use App\Booking;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
-Route::get('Booking','BookingController@index');
+/*
+Route::get('customer','CustomerController@index');
+Route::get('customer/{id}','CustomerController@show');
+Route::post('customer','CustomerController@save');
+Route::put('customer/{customer}','CustomerController@update');
+Route::delete('customer/{customer}','CustomerController@delete');
+*/
+ Route::apiResource('customer', 'CustomerResourceController');

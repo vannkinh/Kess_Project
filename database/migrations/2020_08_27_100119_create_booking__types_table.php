@@ -20,6 +20,16 @@ class CreateBookingTypesTable extends Migration
             $table->string('event_id');
             $table->string('shop_id');
             $table->timestamps();
+
+            $table->foreign('room_id')
+                ->reference(id)
+                ->on('room');
+            $table->foreign('table_id')
+                ->reference(id)
+                ->on('table');
+            $table->foreign('event_id')
+                ->reference(id)
+                ->on('table');
         });
     }
 

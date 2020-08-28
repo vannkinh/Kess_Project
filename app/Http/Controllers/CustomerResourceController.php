@@ -3,12 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Booking;
-use App\Models\Customer;
-// use App\Http\Controllers\Booking;
 
+use App\Customer;
 
-class BookingController extends Controller
+class CustomerResourceController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -38,7 +36,8 @@ class BookingController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $customer = Customer::create($request->all());
+        return response()->json($customer, 201);
     }
 
     /**
@@ -49,7 +48,7 @@ class BookingController extends Controller
      */
     public function show($id)
     {
-        //
+        return response()->json(Customer::find($id), 200);
     }
 
     /**
@@ -70,9 +69,10 @@ class BookingController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Customer $customer)
     {
-        //
+        $customer->update($request->all());
+        return response()->json($customer, 200);
     }
 
     /**
@@ -81,8 +81,9 @@ class BookingController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request, Customer $customer)
     {
-        //
+        $customer->delete();
+        return response()->json(null, 204);
     }
 }
